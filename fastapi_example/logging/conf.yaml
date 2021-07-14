@@ -1,0 +1,41 @@
+version: 1
+
+disable_existing_loggers: True
+
+formatters:
+  json:
+    (): fastapi_example.logging.json_formatter.JSONFormatter
+    format: '%(asctime)s %(levelname)s %(threadName)d %(funcName) %(message)s %(pathname)s'
+    fields_mapping: {
+        'asctime': 'time',
+        'levelname': 'levelname',
+        'threadName': 'threadname',
+        'funcName': 'funcname',
+        'message': 'message',
+        'pathname': 'pathname'
+    }
+    extra_fields: {
+      'compid': 'fastapi_example'  # component id
+    }
+filters:
+  filter_uvicorn_access_log_for_health_endpoint:
+    (): fastapi_example.logging.utils.FilterUvicornAccessLogForHealthEndpoint
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: json
+    stream: ext://sys.stdout
+loggers:
+  fastapi_example:
+    level: INFO
+    handlers: [console]
+    propagate: no
+  uvicorn.access:
+    level: INFO
+    handlers: [console]
+    propagate: no
+    filters: [filter_uvicorn_access_log_for_health_endpoint]
+root:
+  level: INFO
+  handlers: [console]
