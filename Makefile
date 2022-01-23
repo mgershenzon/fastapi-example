@@ -9,8 +9,8 @@ test:
 
 
 build: test
-	docker build -t fastapi-example:latest .
+	docker build --build-arg=GIT_COMMIT=$(shell git describe --match= --always --abbrev=40 --dirty) --build-arg=BUILD_URL=$(shell HOSTNAME) --build-arg=BUILD_ID=LOCAL_BUILD --build-arg=BUILD_NUMBER=LOCAL_BUILD -t fastapi-example:latest .
 
 
 run:
-	docker run -it --publish 3000:3000 fastapi-example:latest
+	docker run -it --publish 3000:80 fastapi-example:latest
