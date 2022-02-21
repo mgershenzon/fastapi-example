@@ -9,8 +9,8 @@ Docker
 
 # How to run:
 
-clone it
-cd into it
-make build
-make run
+clone it  
+cd into it  
+make build  
+make run  
 open browser http://localhost:3000/
