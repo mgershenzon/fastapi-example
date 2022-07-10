@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from fastapi_example.api.routes import bad_route, health, info, root, post_example
+from fastapi_example.api.routes import bad_route, health, info, post_example, root
 
 router = APIRouter()
 router.include_router(bad_route.router, tags=["bad_route"])
