@@ -4,7 +4,7 @@ from fastapi import HTTPException, Request
 
 from fastapi_example.api.errors.http_error import create_response_for_errors
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 async def add_try_except(request: Request, call_next):

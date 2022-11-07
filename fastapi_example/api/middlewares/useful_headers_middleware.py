@@ -5,7 +5,7 @@ from uuid import uuid4
 
 from fastapi import Request
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 CORRELATION_ID_CTX_KEY = 'correlation_id'

@@ -3,6 +3,8 @@ import logging.config
 
 import yaml
 
+logger = logging.getLogger(__name__)
+
 
 class FilterUvicornAccessLogForHealthEndpoint(logging.Filter):
     def filter(self, record: logging.LogRecord) -> bool:
@@ -19,4 +21,4 @@ def setup_logger(conf_file: str):
         config: dict = yaml.safe_load(file.read())
         logging.config.dictConfig(config)
 
-        logging.getLogger().debug(f"Logging was setup with {conf_file} file.")
+        logger.debug(f"Logging was setup with {conf_file} file.")
