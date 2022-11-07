@@ -11,6 +11,14 @@ class PostRequestExample(BaseModel):
     str_for_example: str
     float_or_none_for_example: Union[float, None]
 
+    class Config:
+        schema_extra = {
+            "example": {
+                "str_for_example": "Foo",
+                "float_or_none_for_example": 1.0,
+            }
+        }
+
 
 @router.post('/post_example')
 async def post_example(post_request: PostRequestExample):
