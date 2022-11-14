@@ -3,7 +3,7 @@ Example project with a few simple APIs that don't do much and pytests to check t
 
 
 # Requirements
-Python (tested on python 3.7)
+Python (tested on python 3.10.6)
 Docker
 
 

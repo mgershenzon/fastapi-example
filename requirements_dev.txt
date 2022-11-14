@@ -1,33 +1,47 @@
-asgiref==3.4.1
-attrs==21.2.0
-certifi==2021.5.30
-charset-normalizer==2.0.1
-click==8.0.1
-coverage==5.5
-fastapi==0.66.0
 fastapi-profiler==1.0.0
-h11==0.12.0
-idna==3.2
-importlib-metadata==4.6.1
-iniconfig==1.1.1
-isort==5.9.2
-loguru==0.5.3
-packaging==21.0
-pluggy==0.13.1
-py==1.10.0
-pycodestyle==2.7.0
-pydantic==1.8.2
-pyinstrument==3.4.2
-pyinstrument-cext==0.2.4
-pyparsing==2.4.7
-pytest==6.2.3
-pytest-cov==2.11.1
-pytest-mock==3.5.1
-PyYAML==5.4.1
-requests==2.26.0
-starlette==0.14.2
-toml==0.10.2
-typing-extensions==3.10.0.0
-urllib3==1.26.6
-uvicorn==0.14.0
-zipp==3.5.0
+  fastapi==0.87.0
+    pydantic==1.10.2
+      typing_extensions==4.4.0
+    starlette==0.21.0
+      anyio==3.6.2
+        idna==3.4
+        sniffio==1.3.0
+  pyinstrument==4.4.0
+httpx==0.23.0
+  certifi==2022.9.24
+  httpcore==0.15.0
+    anyio==3.6.2
+      idna==3.4
+      sniffio==1.3.0
+    certifi==2022.9.24
+    h11==0.12.0
+    sniffio==1.3.0
+  rfc3986==1.5.0
+  sniffio==1.3.0
+isort==5.10.1
+loguru==0.6.0
+pipdeptree==2.3.3
+pycodestyle==2.9.1
+pytest-cov==4.0.0
+  coverage==6.5.0
+  pytest==7.2.0
+    attrs==22.1.0
+    exceptiongroup==1.0.2
+    iniconfig==1.1.1
+    packaging==21.3
+      pyparsing==3.0.9
+    pluggy==1.0.0
+    tomli==2.0.1
+pytest-mock==3.10.0
+  pytest==7.2.0
+    attrs==22.1.0
+    exceptiongroup==1.0.2
+    iniconfig==1.1.1
+    packaging==21.3
+      pyparsing==3.0.9
+    pluggy==1.0.0
+    tomli==2.0.1
+PyYAML==6.0
+uvicorn==0.18.3
+  click==8.0.1
+  h11==0.12.0

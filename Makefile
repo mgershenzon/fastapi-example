@@ -1,3 +1,7 @@
+freeze:
+	pip install -r requirements_dev.txt
+	pipdeptree -fl
+
 coverage:
 	pip install -r requirements_dev.txt
 	python -m pytest --cov=fastapi_example tests/ --cov-report term-missing
