@@ -1,4 +1,4 @@
-FROM python:3.9.10-bullseye
+FROM python:3.11.3-bullseye
 
 ARG GIT_COMMIT
 ENV GIT_COMMIT=$GIT_COMMIT

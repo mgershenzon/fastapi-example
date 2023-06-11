@@ -1,47 +1,38 @@
-fastapi-profiler==1.0.0
-  fastapi==0.87.0
-    pydantic==1.10.2
-      typing_extensions==4.4.0
-    starlette==0.21.0
-      anyio==3.6.2
+fastapi-profiler==1.2.0
+  fastapi==0.96.0
+    pydantic==1.10.8
+      typing_extensions==4.6.3
+    starlette==0.27.0
+      anyio==3.7.0
         idna==3.4
         sniffio==1.3.0
   pyinstrument==4.4.0
-httpx==0.23.0
-  certifi==2022.9.24
-  httpcore==0.15.0
-    anyio==3.6.2
+httpx==0.24.1
+  certifi==2023.5.7
+  httpcore==0.17.2
+    anyio==3.7.0
       idna==3.4
       sniffio==1.3.0
-    certifi==2022.9.24
-    h11==0.12.0
+    certifi==2023.5.7
+    h11==0.14.0
     sniffio==1.3.0
-  rfc3986==1.5.0
+  idna==3.4
   sniffio==1.3.0
-isort==5.10.1
-loguru==0.6.0
-pipdeptree==2.3.3
-pycodestyle==2.9.1
-pytest-cov==4.0.0
-  coverage==6.5.0
-  pytest==7.2.0
-    attrs==22.1.0
-    exceptiongroup==1.0.2
-    iniconfig==1.1.1
-    packaging==21.3
-      pyparsing==3.0.9
+isort==5.12.0
+loguru==0.7.0
+pycodestyle==2.10.0
+pytest-cov==4.1.0
+  coverage==7.2.7
+  pytest==7.3.1
+    iniconfig==2.0.0
+    packaging==23.1
     pluggy==1.0.0
-    tomli==2.0.1
 pytest-mock==3.10.0
-  pytest==7.2.0
-    attrs==22.1.0
-    exceptiongroup==1.0.2
-    iniconfig==1.1.1
-    packaging==21.3
-      pyparsing==3.0.9
+  pytest==7.3.1
+    iniconfig==2.0.0
+    packaging==23.1
     pluggy==1.0.0
-    tomli==2.0.1
 PyYAML==6.0
-uvicorn==0.18.3
-  click==8.0.1
-  h11==0.12.0
+uvicorn==0.22.0
+  click==8.1.3
+  h11==0.14.0

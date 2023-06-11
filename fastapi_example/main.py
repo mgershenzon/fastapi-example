@@ -3,7 +3,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi_profiler.profiler_middleware import PyInstrumentProfilerMiddleware
+from fastapi_profiler import PyInstrumentProfilerMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from fastapi_example.api.errors.http_error import custom_404_handler, http_error_handler

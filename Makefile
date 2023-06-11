@@ -1,10 +1,21 @@
+pip_install:
+	pip install -r requirements.txt
+
+
 freeze:
-	pip install -r requirements_dev.txt
-	pipdeptree -fl
+	@ pip install -qqq pipdeptree
+	pipdeptree -fl -e pip,setuptools,pipdeptree
+	@ pip uninstall -yqqq pipdeptree
+
+
+pip_uninstall:
+	pip freeze | xargs pip uninstall -y
+
 
 coverage:
 	pip install -r requirements_dev.txt
 	python -m pytest --cov=fastapi_example tests/ --cov-report term-missing
+
 
 test:
 	pip install -r requirements_dev.txt

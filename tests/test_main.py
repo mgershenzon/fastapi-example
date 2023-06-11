@@ -51,5 +51,4 @@ def test_profiler(mocker):
     a = fastapi_example.main.get_application()
     middleware_clss = str([str(m.cls) for m in a.user_middleware])
 
-    assert "profiler_middleware" in middleware_clss
     assert "PyInstrumentProfilerMiddleware" in middleware_clss
