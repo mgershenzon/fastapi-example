@@ -23,7 +23,7 @@ async def http_404():
     It should be deleted when writing a real world app.
     """
 
-    raise HTTPException(status_code=404, detail="This is en example on how 404 error will look like")
+    raise HTTPException(status_code=404, detail="This is an example of how a 404 error will look like")
 
 
 @router.get('/some_error_but_return_ok', response_class=PlainTextResponse)
@@ -39,3 +39,10 @@ async def some_error_but_return_ok():
 
     finally:
         return "OK"
+
+
+@router.get('/bad_request_error_for_odd_numbers/{number}')
+async def bad_request_error_for_odd_numbers(number: int):
+    if number % 2 == 1:
+        raise HTTPException(status_code=418, detail="Odd numbers get this error")
+    return number

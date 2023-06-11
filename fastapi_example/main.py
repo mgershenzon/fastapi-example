@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi_profiler.profiler_middleware import PyInstrumentProfilerMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from fastapi_example.api.errors.http_error import http_error_handler
+from fastapi_example.api.errors.http_error import custom_404_handler, http_error_handler
 from fastapi_example.api.group_routers import router
 from fastapi_example.api.middlewares.try_except_middleware import add_try_except
 from fastapi_example.api.middlewares.useful_headers_middleware import add_useful_headers
@@ -36,6 +36,7 @@ def get_application():
     application.add_event_handler("shutdown", create_stop_app_handler(application))
 
     application.add_exception_handler(HTTPException, http_error_handler)
+    application.add_exception_handler(404, custom_404_handler)
 
     application.include_router(router)
 

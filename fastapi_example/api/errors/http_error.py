@@ -9,3 +9,8 @@ def create_response_for_errors(exc: HTTPException) -> JSONResponse:
 
 async def http_error_handler(_: Request, exc: HTTPException) -> JSONResponse:
     return create_response_for_errors(exc)
+
+
+async def custom_404_handler(req, http_exception):
+    msg = f"Url '{req.url}' not found, details: '{http_exception.detail}'"
+    return create_response_for_errors(HTTPException(status_code=404, detail=msg))
