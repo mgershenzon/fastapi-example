@@ -20,5 +20,6 @@ def test_post_no_float():
 def test_fails_on_missing_param():
     resp = client.post('/post_example', json={})
     assert resp.status_code == 422
-    msg = '{"detail":[{"loc":["body","str_for_example"],"msg":"field required","type":"value_error.missing"}]}'
+    msg = '{"detail":[{"type":"missing","loc":["body","str_for_example"],"msg":"Field required","input":{},' \
+          '"url":"https://errors.pydantic.dev/2.1.2/v/missing"}]}'
     assert resp.content.decode('utf-8') == msg

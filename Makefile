@@ -3,9 +3,9 @@ pip_install:
 
 
 freeze:
-	@ pip install -qqq pipdeptree
+	pip install -qqq pipdeptree
 	pipdeptree -fl -e pip,setuptools,pipdeptree
-	@ pip uninstall -yqqq pipdeptree
+	pip uninstall -yqqq pipdeptree
 
 
 pip_uninstall:

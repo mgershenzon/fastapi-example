@@ -1,7 +1,4 @@
-from typing import Union
-
 from fastapi import APIRouter
-from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 router = APIRouter()
@@ -9,15 +6,18 @@ router = APIRouter()
 
 class PostRequestExample(BaseModel):
     str_for_example: str
-    float_or_none_for_example: Union[float, None]
+    float_or_none_for_example: float | None = None
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "str_for_example": "Foo",
-                "float_or_none_for_example": 1.0,
-            }
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "str_for_example": "Foo",
+                    "float_or_none_for_example": 3.1415,
+                }
+            ]
         }
+    }
 
 
 @router.post('/post_example')
