@@ -1,3 +1,7 @@
+Q_ARGUMENT := ""
+EMPTY_OR_DEV_ARGUMENT := ""
+
+
 pip_install:
 	pip install -r requirements.txt
 
@@ -9,7 +13,16 @@ freeze:
 
 
 pip_uninstall:
-	pip freeze | xargs pip uninstall -y
+	@eval "pip freeze | xargs pip uninstall -y $(Q_ARGUMENT)"
+
+
+pip_upgrade:
+	$(MAKE) Q_ARGUMENT="-qqq" pip_uninstall
+	@eval "cat requirements$(EMPTY_OR_DEV_ARGUMENT).txt | sed 's/==.*//g' | sed '/  .*/d' | xargs -I{} pip install -qqqU {}; pip -V; pip install -qqq pipdeptree; echo \"Getting ready to freeze:\"; echo; echo ; pipdeptree -fl -e pip,setuptools,pipdeptree;"
+
+
+pip_upgrade_dev:
+	$(MAKE) EMPTY_OR_DEV_ARGUMENT="_dev" pip_upgrade
 
 
 coverage:
