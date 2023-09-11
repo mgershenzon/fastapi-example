@@ -10,6 +10,7 @@ which:				## Some info. Useful when running from IDE gives different results com
 	which docker
 	date
 
+
 pip_install:		 ## Install requirements.txt
 	pip install -r requirements.txt
 
@@ -33,6 +34,7 @@ pip_upgrade:		## Upgrade all the dependencies in the requirements file. Careful,
 	@eval "cat requirements$(EMPTY_OR_DEV_ARGUMENT).txt | sed 's/==.*//g' | sed '/  .*/d' | xargs -I{} pip install -qqqU {};"
 	$(MAKE) freeze
 
+
 pip_upgrade_dev:	## Upgrade all the dependencies in the requirements_dev file. Careful, it will first call pip_uninstall.
 	$(MAKE) EMPTY_OR_DEV_ARGUMENT="_dev" pip_upgrade
 
@@ -48,8 +50,12 @@ test:				## Run all the tests after installing requirements_dev
 	isort . --line-length 120 -q --diff
 
 
+python:				## Run the python module directly
+	PYTHONPATH=. python ./fastapi_example/main.py
+
+
 build:				## Build docker image from code
-	test
+	$(MAKE) test
 	docker build --build-arg=GIT_COMMIT=$(shell git describe --match= --always --abbrev=40 --dirty) --build-arg=BUILD_URL=$(shell HOSTNAME) --build-arg=BUILD_ID=LOCAL_BUILD --build-arg=BUILD_NUMBER=LOCAL_BUILD -t fastapi-example:latest .
 
 
