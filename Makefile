@@ -18,7 +18,7 @@ pip_install:		 ## Install requirements.txt
 freeze:				## Freeze dependencies in a tree format
 	pip install -qqq pipdeptree
 	@echo
-	pipdeptree -fl -e pip,setuptools,pipdeptree
+	pipdeptree -fl -e pip,setuptools,pipdeptree,wheel
 	@echo
 	pip uninstall -yqqq pipdeptree
 
@@ -51,6 +51,7 @@ test:				## Run all the tests after installing requirements_dev
 
 
 python:				## Run the python module directly
+	$(MAKE) pip_install
 	PYTHONPATH=. python ./fastapi_example/main.py
 
 
