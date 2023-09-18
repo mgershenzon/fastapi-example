@@ -2,9 +2,13 @@ import os
 import sys
 from datetime import datetime
 
+from fastapi_example.config import Config
+
 service_info = {
-    "name": "fastapi-example",
-    "startTime": str(datetime.utcnow()),
+    "title": Config.TITLE,
+    "version": Config.VERSION,
+    "startTimeUTC": str(datetime.utcnow()),
+    "startTimeLocal": str(datetime.now()),
     "pythonVersion": sys.version,
     "buildInfoCommitId": os.getenv('GIT_COMMIT', "GIT_COMMIT Not Found!"),
     "buildInfoBuildUrl": os.getenv('BUILD_URL', "BUILD_URL Not Found!"),
