@@ -1,99 +1,98 @@
-# fastapi-example
-Example project with a few simple APIs that don't do much and pytests to check them.
+# FastAPI Example
 
+This is an example project showcasing several simple APIs alongside corresponding Pytest tests to validate their functionality.
 
-# Requirements
+## Prerequisites
 
-You can install just the basic ones and still work on the code.
+You have the flexibility to install only the basic prerequisites and still engage with the code. However, we highly recommend installing the advanced prerequisites, as they significantly enhance the development experience. This documentation assumes that you have installed the advanced ones.
 
-However, it is also recommended to install the advanced items.
-It will make it easier to work, plus the rest of this page assumes you did so.
+### Basic Prerequisites
 
+- Python (tested on Python 3.11.3)
 
-## Basic
-* Python (tested on python 3.11.3)
+Once you have installed Python, you can effortlessly execute the project using the following command:
 
-You can just install python and run with:
-
-```markdown
-PYTHONPATH=. python ./fastapi_example/main.py 
+```bash
+PYTHONPATH=. python ./fastapi_example/main.py
 ```
 
-## Advanced
+### Advanced Prerequisites
 
-* Docker
-* Make
+- Docker
+- Make
 
+**Warning:** This project was developed and tested on MacOS, which means that certain features may not work seamlessly on Linux or Windows.
 
-Warning -
-This was written and tested on MacOS, so some things may not work on Linux/Windows.
+## How to Run
 
-# How to run:
+After cloning the repository and navigating to its directory, you can utilize the provided Makefile commands to run the project.
 
-After cloning the repo and going inside the directory, you can use the makefile commands  
+### Option 1 - Running in a Docker Container
 
-## Option 1 - Running in a docker container
+```bash
+make build
+make run
 ```
-make build  
-make run  
-```
-Then open the next link in the browser http://localhost:3000/
 
-## Option 2 - Running the python script directly on your operating system
-```
+Then, open the following link in your web browser to check it out: [http://localhost:3000/](http://localhost:3000/)
+
+### Option 2 - Running the Python Script Directly on Your Operating System
+
+```bash
 make python
 ```
-Then open the next link in the browser http://localhost:80/
 
+Then, open the following link in your web browser to check it out: [http://localhost:80/](http://localhost:80/)
 
-# How to work with requirements file
-The requirements.txt file is the one needed for running in production.
-When building the docker image, it's the one used.
+## Managing Requirement Files
 
-The requirements_dev.txt file is for running pytext and checking coverage etc.
+This project comprises two requirement files:
 
-Both are in a tree structure generated with pipdeptree.
+- `requirements.txt`: This file includes only the essentials needed to run the project in a production environment and is used during the Docker image building process.
+- `requirements_dev.txt`: This file serves for running Pytests, checking code coverage, and handling other development-related tasks.
 
-## Cleaning the env
+Both files are generated with a tree structure using `pipdeptree`.
 
-To delete all the python libraries from the environment:
-```
+### Cleaning the Environment
+
+To remove all Python libraries from the environment:
+
+```bash
 make pip_uninstall
 ```
-## Upgrade libraries
 
-To upgrade the top level libraries for the requirements.txt file use:
-```
+### Upgrading Libraries
+
+To upgrade the top-level libraries and all their dependencies while getting rid of the old requirements that are no longer needed in the `requirements.txt` file, employ:
+
+```bash
 make pip_upgrade
 ```
 
-or for the requirements_dev.txt file use:
+For the `requirements_dev.txt` file, use:
 
-```
+```bash
 make pip_upgrade_dev
 ```
 
-It will change the libraries installed, but not the code.
-To change the code, copy the new dependency tree from the output to relevant file.
+These commands update the installed libraries without altering the code. To modify the code, copy the new dependency tree from the output to the relevant file.
 
+### Adding/Removing Dependencies
 
-## Adding/Removing dependencies
-1. Start from a clean environment `make pip_uninstall`
-2. Install the requirements.txt file `make pip_install`
-3. If the change is in the requirements_dev.txt file, also run `make test`
-4. Add/Remove your dependencies using pip
-5. Run `make freeze` and paste the new tree to the requirement file
+1. Begin with a clean environment: `make pip_uninstall`
+2. Install the `requirements.txt` file: `make pip_install`
+3. If the change pertains to the `requirements_dev.txt` file, also execute: `make test`
+4. Add or remove your dependencies using `pip`.
+5. Execute `make freeze` and insert the new tree into the relevant requirement file.
 
+## Useful Make Targets
 
-## Useful make targets
-* `make help` prints all available make targets
-* `make test` run the py-tests after installing the dev requirements. This also checks the import order.
-* `make coverege` check the coverage after installing the dev requirements (it should be 100%).
+- `make help`: Displays all available make targets.
+- `make test`: Executes Pytests after installing the development requirements, including verification of the import order.
+- `make coverage`: Validates the test coverage after installing the development requirements; it should achieve 100%.
 
+## Insights into the Code
 
-## Few words about the code
-The main script is here: fastapi_example/main.py
-Configuration is here: /fastapi_example/config.py
-
-If you want to add fastapi routers, there should be under `fastapi_example/api`
-And should be added to the main router in `fastapi_example/api/group_routers.py` 
+- The primary script is located at: `fastapi_example/main.py`.
+- Configuration settings can be found in: `/fastapi_example/config.py`.
+- If you wish to include FastAPI routers, they should be situated under `fastapi_example/api` and subsequently added to the main router in `fastapi_example/api/group_routers.py`.
