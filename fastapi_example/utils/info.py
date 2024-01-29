@@ -1,13 +1,13 @@
 import os
 import sys
-from datetime import datetime
+from datetime import UTC, datetime
 
 from fastapi_example.config import Config
 
 service_info = {
     "title": Config.TITLE,
     "version": Config.VERSION,
-    "startTimeUTC": str(datetime.utcnow()),
+    "startTimeUTaaC": str(datetime.now(UTC)),
     "startTimeLocal": str(datetime.now()),
     "pythonVersion": sys.version,
     "buildInfoCommitId": os.getenv('GIT_COMMIT', "GIT_COMMIT Not Found!"),

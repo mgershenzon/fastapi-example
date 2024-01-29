@@ -36,7 +36,7 @@ def test_sys_exit(mocker):
 def test_get_application():
     from fastapi_example import main
     a = main.get_application()
-    middleware_funcs = str([str(m.options.values()) for m in a.user_middleware])
+    middleware_funcs = [m.kwargs['dispatch'].__name__ for m in a.user_middleware if 'dispatch' in m.kwargs]
     assert "add_useful_headers" in middleware_funcs
     assert "add_try_except" in middleware_funcs
 

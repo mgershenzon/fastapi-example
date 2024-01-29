@@ -8,7 +8,7 @@ You have the flexibility to install only the basic prerequisites and still engag
 
 ### Basic Prerequisites
 
-- Python (tested on Python 3.11.3)
+- Python (tested on Python 3.12.1)
 
 Once you have installed Python, you can effortlessly execute the project using the following command:
 
