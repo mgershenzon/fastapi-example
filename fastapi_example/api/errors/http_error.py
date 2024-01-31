@@ -1,6 +1,10 @@
+import logging
+
 from fastapi import HTTPException
 from starlette.requests import Request
 from starlette.responses import JSONResponse
+
+logger = logging.getLogger(__name__)
 
 
 def create_response_for_errors(exc: HTTPException) -> JSONResponse:
@@ -8,6 +12,7 @@ def create_response_for_errors(exc: HTTPException) -> JSONResponse:
 
 
 async def http_error_handler(_: Request, exc: HTTPException) -> JSONResponse:
+    logger.exception(exc)
     return create_response_for_errors(exc)
 
 

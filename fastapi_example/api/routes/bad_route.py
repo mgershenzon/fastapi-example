@@ -1,7 +1,11 @@
+import logging
+
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import PlainTextResponse
 
 router = APIRouter()
+
+logger = logging.getLogger(__name__)
 
 
 @router.get('/bad_route', response_class=PlainTextResponse)
@@ -36,7 +40,8 @@ async def some_error_but_return_ok():
     """
     try:
         1 / 0
-
+    except Exception as e:
+        logger.warning("Warning from the except block after a problem dividing 1 with 0.", exc_info=e)
     finally:
         return "OK"
 
