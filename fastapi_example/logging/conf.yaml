@@ -3,17 +3,9 @@ version: 1
 disable_existing_loggers: True
 
 formatters:
-  json:
-    (): fastapi_example.logging.json_formatter.JSONFormatter
-    format: '%(asctime)s %(levelname)s %(threadName)d %(funcName) %(message)s %(pathname)s'
-    fields_mapping: {
-        'asctime': 'time',
-        'levelname': 'levelname',
-        'threadName': 'threadname',
-        'funcName': 'funcname',
-        'message': 'message',
-        'pathname': 'pathname'
-    }
+  default:
+    (): fastapi_example.logging.custom_formatter.CustomFormatter
+    format: '%(asctime)s %(compid)s %(levelname)-7s %(correlation_id)-36s %(message)s'
     extra_fields: {
       'compid': 'fastapi_example'  # component id
     }
@@ -24,7 +16,7 @@ handlers:
   console:
     class: logging.StreamHandler
     level: INFO
-    formatter: json
+    formatter: default
     stream: ext://sys.stdout
 loggers:
   fastapi_example:
