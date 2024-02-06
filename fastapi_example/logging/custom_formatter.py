@@ -36,8 +36,6 @@ class CustomFormatter(Formatter):
         :param record: received LogRecord instance
         :return: encoded log message in JSON format
         """
-        record.message = record.getMessage()
-        record.asctime = self.formatTime(record)
         record.compid = self._extra_fields['compid']
         record.correlation_id = get_correlation_id()
 
@@ -48,19 +46,3 @@ class CustomFormatter(Formatter):
         log_line = self.internal_formatter.format(record)
 
         return log_line
-
-    def formatTime(self, record: LogRecord, datefmt: str = None):
-        """
-        Time stamp formatting method.
-
-        :param record: received LogRecord instance
-        :param datefmt: date format pattern string
-        :return:
-        """
-        ct = self.converter(record.created)
-        if datefmt:
-            s = time.strftime(datefmt, ct)
-        else:
-            t = time.strftime("%Y-%m-%dT%H:%M:%S", ct)
-            s = "%s.%03dZ" % (t, record.msecs)
-        return s
