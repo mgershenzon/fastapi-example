@@ -1,4 +1,4 @@
-# FastAPI Example
+# FastAPI Example Project
 
 This is an example project showcasing several simple APIs alongside corresponding Pytest tests to validate their functionality.
 
@@ -16,7 +16,7 @@ Once you have installed Python, you can effortlessly execute the project using t
 PYTHONPATH=. python ./fastapi_example/main.py
 ```
 
-### Advanced Prerequisites
+### Advanced Prerequisites (Optional)
 
 - Docker
 - Make
@@ -93,6 +93,22 @@ These commands update the installed libraries without altering the code. To modi
 
 ## Insights into the Code
 
-- The primary script is located at: `fastapi_example/main.py`.
-- Configuration settings can be found in: `/fastapi_example/config.py`.
-- If you wish to include FastAPI routers, they should be situated under `fastapi_example/api` and subsequently added to the main router in `fastapi_example/api/group_routers.py`.
+- **Main Script:** `fastapi_example/main.py`
+- **Configurations:** `fastapi_example/config.py`
+
+  Here you can configure the port, number of workers in the app, enable json log format and much more.
+- **Project Makefile:** `Makefile`
+
+  Useful commands that can be run with `make`, or used as a cheatsheet.
+- **API Endpoints:** `fastapi_example/api/routes/*`
+
+  These files represent the heart of the application, defining how it responds to various requests. Each function with a path annotation acts as an individual endpoint. Adding a new endpoint is simple: create a function here and specify its path.
+- **FastAPI Top Level Route:** `fastapi_example/api/group_routers.py`
+  This file acts as a traffic manager, organizing all the routes in to one route, that will be used by the application.
+  
+To add a new endpoint to the application:
+1. Open one of the files under `fastapi_example/api/routes`
+2. Create a new function and annotate it with the desired path (e.g., `@router.get('/new_endpoint')`).
+3. That's it. Run the server, and you can call your new endpoint.
+ 
+Bonus: If you wish to add a new file that will contain endpoints under `fastapi_example/api/routes`, you can. Just create it, instantiate a new router and add the new router to  `fastapi_example/api/group_routers.py`.
