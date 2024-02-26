@@ -16,7 +16,7 @@ async def bad_route():
     It should be deleted when writing a real world app.
     """
 
-    raise RuntimeError(f"This error was expected as you called the 'bad_route' endpoint")
+    raise RuntimeError("This error was expected as you called the 'bad_route' endpoint")
 
 
 @router.get('/http_404', response_class=PlainTextResponse)

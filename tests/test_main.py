@@ -17,15 +17,14 @@ def test_main(mocker):
 
     fastapi_example.main.main()
     uvicorn_mock.assert_any_call('main:app', host='0.0.0.0', port=80, log_config=Config.LOGGING_CONFIG,
-                                 workers=Config.WORKERS)
+                                 workers=fastapi_example.main.Config.WORKERS)
 
 
 def test_sys_exit(mocker):
     mocker.patch.object(uvicorn, "run", side_effect=raise_sys_exit)
 
-    import fastapi_example.main
-
     with pytest.raises(RuntimeError) as e:
+        import fastapi_example.main
         fastapi_example.main.main()
 
     msg = "Problem with uvicorn. Exit code: '99'"
@@ -43,12 +42,11 @@ def test_get_application():
 
 # This test is here to see that no one deletes the profiler requirement by mistake
 def test_profiler(mocker):
-    import fastapi_example
     from fastapi_example import main
 
     mocker.patch("fastapi_example.config.Config.PROFILING_ON", return_value=True, new_callable=PropertyMock)
 
-    a = fastapi_example.main.get_application()
+    a = main.get_application()
     middleware_clss = str([str(m.cls) for m in a.user_middleware])
 
     assert "PyInstrumentProfilerMiddleware" in middleware_clss

@@ -2,7 +2,7 @@ import logging
 
 from fastapi import APIRouter
 
-from fastapi_example.utils import service_info
+from fastapi_example.utils.info import service_info
 
 router = APIRouter()
 
