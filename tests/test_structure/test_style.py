@@ -5,7 +5,7 @@ from pathlib import Path
 import isort
 import pytest_ruff
 
-TEST_ROOT = Path(__file__).parent.absolute()
+TEST_ROOT = Path(__file__).parent.parent.absolute()
 REPO_ROOT = Path(TEST_ROOT).parent.absolute()
 CONFIG_PATH = Path(REPO_ROOT, "ruff.toml")
 

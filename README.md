@@ -49,9 +49,11 @@ Then, open the following link in your web browser to check it out: [http://local
 This project comprises two requirement files:
 
 - `requirements.txt`: This file includes only the essentials needed to run the project in a production environment and is used during the Docker image building process.
-- `requirements_dev.txt`: This file serves for running Pytests, checking code coverage, and handling other development-related tasks.
+- `tests/dev_requirements.txt`: This file serves for running Pytests, checking code coverage, and handling other development-related tasks.
 
-Both files are generated with a tree structure using `pipdeptree`.
+Both files are generated with pip-compile (which is under pip-tools) based on the next files:
+- `requirements.in` 
+- `tests/dev_requirements.in` 
 
 ### Cleaning the Environment
 
@@ -63,27 +65,27 @@ make pip_uninstall
 
 ### Upgrading Libraries
 
-To upgrade the top-level libraries and all their dependencies while getting rid of the old requirements that are no longer needed in the `requirements.txt` file, employ:
+To upgrade the top-level libraries and all their dependencies while getting rid of the old requirements that are no longer needed in the requirements files, employ:
 
 ```bash
-make pip_upgrade
+make upgrade
 ```
 
-For the `requirements_dev.txt` file, use:
+To also install all the `requirements_dev.txt` file dependencies, use:
 
 ```bash
 make pip_upgrade_dev
 ```
 
-These commands update the installed libraries without altering the code. To modify the code, copy the new dependency tree from the output to the relevant file.
+These commands update the installed libraries and change the requirements files.
+They also upgrade and pin requirements.in and tests/dev_requirements.in
+
 
 ### Adding/Removing Dependencies
 
-1. Begin with a clean environment: `make pip_uninstall`
-2. Install the `requirements.txt` file: `make pip_install`
+1. If you want to add top level dependency, update the relevant requirements.in file
+2. Recompile the requirements files and install the `requirements.txt` file with: `make pip_upgrade`
 3. If the change pertains to the `requirements_dev.txt` file, also execute: `make test`
-4. Add or remove your dependencies using `pip`.
-5. Execute `make freeze` and insert the new tree into the relevant requirement file.
 
 ## Useful Make Targets
 
