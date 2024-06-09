@@ -39,7 +39,8 @@ def test_start_app(mocker):
 
 def test_start_app_exception(mocker):
     # Create a mock FastAPI instance
-    application = FastAPI()
+    title = "Test Start Exception"
+    application = FastAPI(title=title)
 
     # Patch the logger in the module
     mock_logger = mocker.patch('fastapi_example.core.events.logger')
@@ -54,12 +55,13 @@ def test_start_app_exception(mocker):
     asyncio.run(start_app())
 
     # Assert that logger.error was called
-    mock_logger.error.assert_called_once_with("Error in start_app: Test exception")
+    mock_logger.error.assert_called_once_with(f"Error in start_app: Test exception for app {title}")
 
 
 def test_stop_app_exception(mocker):
     # Create a mock FastAPI instance
-    application = FastAPI()
+    title = "Test Stop Exception"
+    application = FastAPI(title=title)
 
     # Patch the logger in the module
     mock_logger = mocker.patch('fastapi_example.core.events.logger')
@@ -74,4 +76,4 @@ def test_stop_app_exception(mocker):
     asyncio.run(stop_app())
 
     # Assert that logger.error was called
-    mock_logger.error.assert_called_once_with("Error in stop_app: Test exception")
+    mock_logger.error.assert_called_once_with(f"Error in stop_app: Test exception for app {title}")

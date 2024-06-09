@@ -14,7 +14,7 @@ def create_start_app_handler(app: FastAPI) -> Callable:  # type: ignore
                 f'Start app handler (This will be printed once per worker). Code can be found in file {__file__}'
             )
         except Exception as e:
-            logger.error(f"Error in start_app: {e}")
+            logger.error(f"Error in start_app: {e} for app {app.title}")
 
     return start_app
 
@@ -27,6 +27,6 @@ def create_stop_app_handler(app: FastAPI) -> Callable:  # type: ignore
                 f'Stop app handler (This will be printed once per worker). Code can be found in file {__file__}'
             )
         except Exception as e:
-            logger.error(f"Error in stop_app: {e}")
+            logger.error(f"Error in stop_app: {e} for app {app.title}")
 
     return stop_app

@@ -29,4 +29,4 @@ class ConfigModel(BaseSettings):
     LONG_LOG_LINE: bool = False
 
 
-Config = ConfigModel()
+Config: ConfigModel = ConfigModel()
