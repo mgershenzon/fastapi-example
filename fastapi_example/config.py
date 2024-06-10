@@ -24,7 +24,7 @@ class ConfigModel(BaseSettings):
     PROFILING_ON: bool = False
     VERSION: str = "1.0"
     TITLE: str = "Fastapi Example"
-    JSON_LOG_FORMAT: bool = False
+    JSON_LOG_FORMAT: bool = True
     LOG_FORMAT_OPTIONAL_DATA: str = "          %(pathname)s:%(lineno)d %(threadName)s %(thread)d"
     LONG_LOG_LINE: bool = False
 
