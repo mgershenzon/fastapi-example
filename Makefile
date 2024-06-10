@@ -35,7 +35,8 @@ freeze_tree:		## Freeze dependencies in a tree format (based on mandatory requir
 req_in_upgrade:		## Upgrade dependencies in requirements.in and install. Doesn't change requirements.txt
 	sed -I '' 's/[=<>].*//g' $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN)
 	pip install -r $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN)
-	cat $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN) | grep -v '$(REQ_IN)'| xargs -I{} bash -c "pip freeze| grep -E '^{}=='" > tmp && mv tmp $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN)
+	echo "" > tmp
+	cat $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN) | grep -v '$(REQ_IN)'| xargs -I{} bash -c "pip freeze| grep -E '^{}==' >> tmp || (echo ERROR: package *{}* not found in *pip freeze* && exit 1)" && mv tmp $(EMPTY_OR_DEV_ARGUMENT)$(REQ_IN)
 
 
 req_in_upgrade_dev:	## Upgrade dependencies in tests/dev_requirements.in and install. Doesn't change tests/dev_requirements.txt
